@@ -41,9 +41,11 @@ export const useChat = () => {
             if (done) break;
             message += decoder.decode(value, { stream: true });
 
+            const cleanMessage = message.replace(/^data:\s*/, "");
+
             setMessages((prevMessages) => [
               ...prevMessages,
-              { content: message, sender: "bot" },
+              { content: cleanMessage, sender: "bot" },
             ]);
           }
         }
